@@ -32,4 +32,10 @@ What I landed on was creating a struct `SeedLocation` and using a builder patter
 each stage.
 
 #### Part 2
-TBD
+
+Well, fixing up how the seed numbers were parsed wasn't too bad ... but the
+puzzle inputs result in like ~1.9 billion keys generated, and testing them all
+takes ... a very long time. So if you were to let this run for ~2-3 weeks you'd
+probably eventually get an answer.
+
+I'm sure there's a faster way, but I don't know how to find it.

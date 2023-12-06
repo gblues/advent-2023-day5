@@ -12,8 +12,13 @@ fn main() {
     let temp_to_humidity: Vec<_> = parse_section(sections[6]);
     let humidity_to_location: Vec<_> = parse_section(sections[7]);
 
-    let seeds: Vec<_> = sections[0].split_whitespace().filter_map(|s| s.parse::<u64>().ok()).collect();
-
+    let mut seeds: Vec<u64> = Vec::new();
+    let seed_data: Vec<_> = sections[0].split_whitespace().filter_map(|s| s.parse::<u64>().ok()).collect();
+    assert_eq!(seed_data.len() % 2, 0);
+    for i in (0..seed_data.len()).step_by(2) {
+        for count in 0..seed_data[i+1] { seeds.push(seed_data[i]+count)}
+    }
+    println!("searching for the lowest location among {} seeds", seeds.len());
     let mut seed_locations: Vec<_> = seeds.iter()
         .map(|seed|
             seed::SeedLocationBuilder::new(*seed)
